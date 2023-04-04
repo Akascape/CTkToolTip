@@ -58,7 +58,7 @@ root.mainloop()
 | x_offset | change the horizontal offset of the tooltip widget from mouse cursor |
 | y_offset | change the vertical offset of the tooltip widget from mouse cursor |
 | **alpha** | change the transparency effect of the tooltip (range: 0-1) |
-| **resampling** | upscale the rendering method for the widget (default is False) |
+| **resampling** | upscale the widget resolution (default is False) |
 | **bg_color** | change the background color of the tooltip |
 | corner_radius | roundness of the corners |
 | border_width | add a border around the tooltips (default is 0) |
