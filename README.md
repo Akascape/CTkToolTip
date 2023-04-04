@@ -67,7 +67,7 @@ root.mainloop()
 | wraplenght | change the number of leters per line |
 | font | label text font, tuple: (font_name, size) |
 | justify | change the text display structure (left, right or center |
-| **Other Label Parameters | All other parameters for ctk label can be passed in ctktooltip |
+| _*Other Label Parameters_ | _All other parameters for ctk label can be passed in ctktooltip_ |
 
 ## Methods
 
