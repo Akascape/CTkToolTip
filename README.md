@@ -1,5 +1,5 @@
 # CTkToolTip
-Small pop-up tooltip widget for displaying details on hovering inside customtkinter app.
+**Small pop-up tooltip widget for displaying details on customtkinter widgets.**
 
 ![example](https://user-images.githubusercontent.com/89206401/229771216-199727ef-2a01-4ab3-bac6-7e0a5234389e.gif)
 
@@ -15,11 +15,12 @@ Small pop-up tooltip widget for displaying details on hovering inside customtkin
 
 ### [<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Akascape/CTkToolTip?&color=white&label=Download%20Source%20Code&logo=Python&logoColor=yellow&style=for-the-badge"  width="400">](https://github.com/Akascape/CTkToolTip/archive/refs/heads/main.zip)
 
-Download the source code, paste the `CTkToolTip` folder in the directory where your program is present.
+**Download the source code, paste the `CTkToolTip` folder in the directory where your program is present.**
+
 ## Example
 **Simple Usage:**
 ```python
-CTkToolTip(widget_name, message="Your Message")
+CTkToolTip(widget, message="Your Message")
 ```
 **App Example:**
 ```python
