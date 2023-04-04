@@ -1,5 +1,5 @@
 # CTkToolTip
-**Small pop-up tooltip widget for displaying details on customtkinter widgets.**
+**Small tooltip pop-up label for displaying details on customtkinter widgets.**
 
 ![example](https://user-images.githubusercontent.com/89206401/229771216-199727ef-2a01-4ab3-bac6-7e0a5234389e.gif)
 
