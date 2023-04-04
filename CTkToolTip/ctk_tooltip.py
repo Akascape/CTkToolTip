@@ -26,6 +26,7 @@ class CTkToolTip(customtkinter.CTkToplevel):
         border_color: str = None,
         alpha: float = 0.8,
         padding: tuple = (10,2),
+        resampling: bool = False,
         **message_kwargs):
         
         super().__init__()
@@ -46,7 +47,9 @@ class CTkToolTip(customtkinter.CTkToplevel):
         else:
             self.transparent_color = '#000001'
             corner_radius = 0
-
+            
+        if not resampling: self.resizable(width=True, height=True)
+            
         # Make the background transparent
         self.config(background=self.transparent_color)
 
