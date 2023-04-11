@@ -140,6 +140,7 @@ class CTkToolTip(customtkinter.CTkToplevel):
         
         if not self.widget.winfo_exists():
             self.hide()
+            self.destroy()
             
         if self.status == "inside" and time.time() - self.last_moved >= self.delay:
             self.status = "visible"
