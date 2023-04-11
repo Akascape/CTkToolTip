@@ -137,6 +137,10 @@ class CTkToolTip(customtkinter.CTkToplevel):
         Displays the ToolTip.
         """
         
+        if not self.widget.winfo_exists():
+            self.withdraw()
+            self.hide()
+            
         if self.status == "inside" and time.time() - self.last_moved >= self.delay:
             self.status = "visible"
             self.deiconify()
