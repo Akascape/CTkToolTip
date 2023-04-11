@@ -1,6 +1,6 @@
 """
 CTkToolTip Widget
-version: 0.1
+version: 0.2
 """
 
 import time
@@ -78,10 +78,10 @@ class CTkToolTip(customtkinter.CTkToplevel):
         
         # Add the message widget inside the tooltip
         self.frame = customtkinter.CTkFrame(self, bg_color=self.transparent_color, corner_radius=self.corner_radius,
-                                  border_width=self.border_width, fg_color=self.bg_color, border_color=self.border_color)
+                                            border_width=self.border_width, fg_color=self.bg_color, border_color=self.border_color)
         self.frame.pack(padx=0, pady=0)
         self.message_label = customtkinter.CTkLabel(self.frame, textvariable=self.messageVar, **message_kwargs)
-        self.message_label.pack(fill="both", padx=self.padding[0], pady=self.padding[1])
+        self.message_label.pack(fill="both", padx=self.padding[0]+self.border_width, pady=self.padding[1]+self.border_width)
 
         if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
             if not bg_color:             
