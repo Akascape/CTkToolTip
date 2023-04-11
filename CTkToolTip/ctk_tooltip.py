@@ -93,7 +93,8 @@ class CTkToolTip(customtkinter.CTkToplevel):
         self.widget.bind("<Leave>", self.on_leave, add="+")
         self.widget.bind("<Motion>", self.on_enter, add="+")
         self.widget.bind("<B1-Motion>", self.on_enter, add="+")
-
+        self.widget.bind("<Destroy>", lambda _: self.hide(), add="+")
+        
     def show(self) -> None:
         """
         Enable the widget.
@@ -138,7 +139,6 @@ class CTkToolTip(customtkinter.CTkToplevel):
         """
         
         if not self.widget.winfo_exists():
-            self.withdraw()
             self.hide()
             
         if self.status == "inside" and time.time() - self.last_moved >= self.delay:
