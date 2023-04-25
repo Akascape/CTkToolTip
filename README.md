@@ -65,7 +65,7 @@ root.mainloop()
 | border_color | change the color of the border width |
 | padding | add padx and pady inside the tooltip frame, tuple: (padx, pady) |
 | **text_color** | change the text color of tooltip |
-| wraplenght | change the number of leters per line |
+| wraplength | constrains the width of the tooltip, causing CTkToolTip, where required, to wrap the message at word boundaries. |
 | font | label text font, tuple: (font_name, size) |
 | justify | change the text display structure (left, right or center |
 | _*Other Label Parameters_ | _All other parameters for ctk label can be passed in ctktooltip_ |
