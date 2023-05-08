@@ -38,7 +38,7 @@ root = customtkinter.CTk()
 slider = customtkinter.CTkSlider(root, from_=0, to=100, command=show_value)
 slider.pack(fill="both", padx=20, pady=20)
 
-tooltip_1 = CTkToolTip(slider, message="50", resampling=True)
+tooltip_1 = CTkToolTip(slider, message="50")
 
 button = customtkinter.CTkButton(root, command=show_text)
 button.pack(fill="both", padx=20, pady=20)
@@ -58,7 +58,6 @@ root.mainloop()
 | x_offset | change the horizontal offset of the tooltip widget from mouse cursor |
 | y_offset | change the vertical offset of the tooltip widget from mouse cursor |
 | **alpha** | change the transparency effect of the tooltip (range: 0-1) |
-| **resampling** | upscale the widget resolution (default is False) |
 | **bg_color** | change the background color of the tooltip |
 | corner_radius | roundness of the corners |
 | border_width | add a border around the tooltips (default is 0) |
