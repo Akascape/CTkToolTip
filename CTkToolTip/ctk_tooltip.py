@@ -1,12 +1,12 @@
 """
 CTkToolTip Widget
-version: 0.3
+version: 0.4
 """
 
 import time
 import sys
 import customtkinter
-from tkinter import Toplevel
+from tkinter import Toplevel, Frame
 
 class CTkToolTip(Toplevel):
     """
@@ -31,13 +31,12 @@ class CTkToolTip(Toplevel):
         **message_kwargs):
         
         super().__init__()
-        
+
         self.widget = widget
-        self.withdraw()  # Hide initially in case there is a delay
         
         # Disable ToolTip's title bar
         self.overrideredirect(True)
-        
+                
         if sys.platform.startswith("win"):
             self.transparent_color = self.widget._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkToplevel"]["fg_color"])
             self.attributes("-transparentcolor", self.transparent_color)
@@ -53,12 +52,12 @@ class CTkToolTip(Toplevel):
         
         # Make the background transparent
         self.config(background=self.transparent_color)
-
+        
         # StringVar instance for msg string
         self.messageVar = customtkinter.StringVar()
         self.message = message
         self.messageVar.set(self.message)
-        
+      
         self.delay = delay
         self.follow = follow
         self.x_offset = x_offset
@@ -77,24 +76,30 @@ class CTkToolTip(Toplevel):
         self.attributes('-alpha', self.alpha)
         
         # Add the message widget inside the tooltip
-        self.frame = customtkinter.CTkFrame(self, bg_color=self.transparent_color, corner_radius=self.corner_radius,
+        self.transparent_frame = Frame(self, bg=self.transparent_color)
+        self.transparent_frame.pack(padx=0, pady=0, fill="both", expand=True)
+        
+        self.frame = customtkinter.CTkFrame(self.transparent_frame, bg_color=self.transparent_color, corner_radius=self.corner_radius,
                                             border_width=self.border_width, fg_color=self.bg_color, border_color=self.border_color)
-        self.frame.pack(padx=0, pady=0)
+        self.frame.pack(padx=0, pady=0, fill="both", expand=True)
+        
         self.message_label = customtkinter.CTkLabel(self.frame, textvariable=self.messageVar, **message_kwargs)
-        self.message_label.pack(fill="both", padx=self.padding[0]+self.border_width, pady=self.padding[1]+self.border_width)
+        self.message_label.pack(fill="both", padx=self.padding[0]+self.border_width,
+                                pady=self.padding[1]+self.border_width, expand=True)
 
-        if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
-            if not bg_color:             
-                self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
-                self.frame.configure(fg_color=self._top_fg_color)
-            
+        if self.widget.winfo_name()!="tk":
+            if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
+                if not bg_color:             
+                    self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
+                    self.frame.configure(fg_color=self._top_fg_color)
+  
         # Add bindings to the widget without overriding the existing ones
         self.widget.bind("<Enter>", self.on_enter, add="+")
         self.widget.bind("<Leave>", self.on_leave, add="+")
         self.widget.bind("<Motion>", self.on_enter, add="+")
         self.widget.bind("<B1-Motion>", self.on_enter, add="+")
         self.widget.bind("<Destroy>", lambda _: self.hide(), add="+")
-        
+ 
     def show(self) -> None:
         """
         Enable the widget.
@@ -150,6 +155,8 @@ class CTkToolTip(Toplevel):
         """
         Disable the widget from appearing.
         """
+        if not self.winfo_exists():
+            return
         self.withdraw()
         self.disable = True
 
@@ -169,7 +176,6 @@ class CTkToolTip(Toplevel):
         """
         Set new message or configure the label parameters.
         """
-        
         if delay: self.delay = delay
         if bg_color: self.frame.configure(fg_color=bg_color)
         
