@@ -33,6 +33,7 @@ class CTkToolTip(Toplevel):
 
         self.widget = widget
         
+        self.withdraw()
         # Disable ToolTip's title bar
         self.overrideredirect(True)
                 
@@ -47,7 +48,7 @@ class CTkToolTip(Toplevel):
             corner_radius = 0
 
         self.resizable(width=True, height=True)
-        self.transient(self.master)
+        self.transient()
         
         # Make the background transparent
         self.config(background=self.transparent_color)
