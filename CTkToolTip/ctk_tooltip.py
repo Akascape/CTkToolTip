@@ -40,13 +40,16 @@ class CTkToolTip(Toplevel):
         if sys.platform.startswith("win"):
             self.transparent_color = self.widget._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkToplevel"]["fg_color"])
             self.attributes("-transparentcolor", self.transparent_color)
+            self.transient()
         elif sys.platform.startswith("darwin"):
             self.transparent_color = 'systemTransparent'
             self.attributes("-transparent", True)
+            self.transient(self.master)
         else:
             self.transparent_color = '#000001'
             corner_radius = 0
-
+            self.transient()
+            
         self.resizable(width=True, height=True)
         self.transient()
         
