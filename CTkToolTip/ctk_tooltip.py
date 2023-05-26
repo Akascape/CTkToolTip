@@ -90,18 +90,19 @@ class CTkToolTip(Toplevel):
         self.message_label.pack(fill="both", padx=self.padding[0]+self.border_width,
                                 pady=self.padding[1]+self.border_width, expand=True)
 
-        if self.widget.winfo_name()!="tk":
-            if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
-                if not bg_color:             
-                    self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
-                    self.frame.configure(fg_color=self._top_fg_color)
-  
-        # Add bindings to the widget without overriding the existing ones
-        self.widget.bind("<Enter>", self.on_enter, add="+")
-        self.widget.bind("<Leave>", self.on_leave, add="+")
-        self.widget.bind("<Motion>", self.on_enter, add="+")
-        self.widget.bind("<B1-Motion>", self.on_enter, add="+")
-        self.widget.bind("<Destroy>", lambda _: self.hide(), add="+")
+        if self.widget != None:
+            if self.widget.winfo_name()!="tk":
+                if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
+                    if not bg_color:             
+                        self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
+                        self.frame.configure(fg_color=self._top_fg_color)
+
+            # Add bindings to the widget without overriding the existing ones
+            self.widget.bind("<Enter>", self.on_enter, add="+")
+            self.widget.bind("<Leave>", self.on_leave, add="+")
+            self.widget.bind("<Motion>", self.on_enter, add="+")
+            self.widget.bind("<B1-Motion>", self.on_enter, add="+")
+            self.widget.bind("<Destroy>", lambda _: self.hide(), add="+")
  
     def show(self) -> None:
         """
