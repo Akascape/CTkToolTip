@@ -13,9 +13,11 @@
 
 ## Installation
 
-### [<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Akascape/CTkToolTip?&color=white&label=Download%20Source%20Code&logo=Python&logoColor=yellow&style=for-the-badge"  width="400">](https://github.com/Akascape/CTkToolTip/archive/refs/heads/main.zip)
+```
+pip install CTkToolTip
+```
 
-**Download the source code, paste the `CTkToolTip` folder in the directory where your program is present.**
+### [<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Akascape/CTkToolTip?&color=white&label=Download%20Source%20Code&logo=Python&logoColor=yellow&style=for-the-badge"  width="400">](https://github.com/Akascape/CTkToolTip/archive/refs/heads/main.zip)
 
 ## Example
 **Simple Usage:**
