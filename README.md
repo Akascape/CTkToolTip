@@ -8,7 +8,7 @@
 - Configurable options
 - Transparency effect
 - Round corners
-- Can show live value of a CTk Slider
+- Can show current value of a CTk Slider
 - Add delays
 
 ## Installation
