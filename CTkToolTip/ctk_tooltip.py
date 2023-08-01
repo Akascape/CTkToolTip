@@ -1,6 +1,6 @@
 """
 CTkToolTip Widget
-version: 0.5
+version: 0.6
 """
 
 import time
@@ -69,7 +69,7 @@ class CTkToolTip(Toplevel):
         self.alpha = alpha
         self.border_width = border_width
         self.padding = padding
-        self.bg_color = bg_color
+        self.bg_color = customtkinter.ThemeManager.theme["CTkFrame"]["fg_color"] if bg_color is None else bg_color
         self.border_color = border_color
         self.disable = False
         
@@ -79,11 +79,11 @@ class CTkToolTip(Toplevel):
         self.attributes('-alpha', self.alpha)
         
         if sys.platform.startswith("win"):
-            if self.bg_color==self.transparent_color:
+            if self.widget._apply_appearance_mode(self.bg_color)==self.transparent_color:
                 self.transparent_color = "#000001"
                 self.config(background=self.transparent_color)
                 self.attributes("-transparentcolor", self.transparent_color)
-        
+  
         # Add the message widget inside the tooltip
         self.transparent_frame = Frame(self, bg=self.transparent_color)
         self.transparent_frame.pack(padx=0, pady=0, fill="both", expand=True)
