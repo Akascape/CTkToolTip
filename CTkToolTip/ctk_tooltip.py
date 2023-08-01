@@ -1,6 +1,6 @@
 """
 CTkToolTip Widget
-version: 0.4
+version: 0.5
 """
 
 import time
@@ -32,8 +32,9 @@ class CTkToolTip(Toplevel):
         super().__init__()
 
         self.widget = widget
-        
+
         self.withdraw()
+        
         # Disable ToolTip's title bar
         self.overrideredirect(True)
                 
@@ -51,7 +52,6 @@ class CTkToolTip(Toplevel):
             self.transient()
             
         self.resizable(width=True, height=True)
-        self.transient()
         
         # Make the background transparent
         self.config(background=self.transparent_color)
@@ -78,6 +78,12 @@ class CTkToolTip(Toplevel):
         self.last_moved = 0
         self.attributes('-alpha', self.alpha)
         
+        if sys.platform.startswith("win"):
+            if self.bg_color==self.transparent_color:
+                self.transparent_color = "#000001"
+                self.config(background=self.transparent_color)
+                self.attributes("-transparentcolor", self.transparent_color)
+        
         # Add the message widget inside the tooltip
         self.transparent_frame = Frame(self, bg=self.transparent_color)
         self.transparent_frame.pack(padx=0, pady=0, fill="both", expand=True)
@@ -95,14 +101,15 @@ class CTkToolTip(Toplevel):
                 if not bg_color:             
                     self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
                     self.frame.configure(fg_color=self._top_fg_color)
-  
+
+        
         # Add bindings to the widget without overriding the existing ones
         self.widget.bind("<Enter>", self.on_enter, add="+")
         self.widget.bind("<Leave>", self.on_leave, add="+")
         self.widget.bind("<Motion>", self.on_enter, add="+")
         self.widget.bind("<B1-Motion>", self.on_enter, add="+")
         self.widget.bind("<Destroy>", lambda _: self.hide(), add="+")
- 
+        
     def show(self) -> None:
         """
         Enable the widget.
