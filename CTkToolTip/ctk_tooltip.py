@@ -1,6 +1,6 @@
 """
 CTkToolTip Widget
-version: 0.6
+version: 0.7
 """
 
 import time
@@ -25,7 +25,7 @@ class CTkToolTip(Toplevel):
         corner_radius: int = 10,
         border_width: int = 0,
         border_color: str = None,
-        alpha: float = 0.9,
+        alpha: float = 0.8,
         padding: tuple = (10,2),
         **message_kwargs):
         
@@ -77,13 +77,13 @@ class CTkToolTip(Toplevel):
         self.status = "outside"
         self.last_moved = 0
         self.attributes('-alpha', self.alpha)
-        
+
         if sys.platform.startswith("win"):
             if self.widget._apply_appearance_mode(self.bg_color)==self.transparent_color:
                 self.transparent_color = "#000001"
                 self.config(background=self.transparent_color)
                 self.attributes("-transparentcolor", self.transparent_color)
-  
+            
         # Add the message widget inside the tooltip
         self.transparent_frame = Frame(self, bg=self.transparent_color)
         self.transparent_frame.pack(padx=0, pady=0, fill="both", expand=True)
@@ -100,8 +100,8 @@ class CTkToolTip(Toplevel):
             if self.frame.cget("fg_color")==self.widget.cget("bg_color"):
                 if not bg_color:             
                     self._top_fg_color = self.frame._apply_appearance_mode(customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
-                    self.frame.configure(fg_color=self._top_fg_color)
-
+                    if self._top_fg_color!=self.transparent_color:
+                        self.frame.configure(fg_color=self._top_fg_color)
         
         # Add bindings to the widget without overriding the existing ones
         self.widget.bind("<Enter>", self.on_enter, add="+")
