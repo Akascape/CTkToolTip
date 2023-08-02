@@ -25,7 +25,7 @@ class CTkToolTip(Toplevel):
         corner_radius: int = 10,
         border_width: int = 0,
         border_color: str = None,
-        alpha: float = 0.8,
+        alpha: float = 0.95,
         padding: tuple = (10,2),
         **message_kwargs):
         
