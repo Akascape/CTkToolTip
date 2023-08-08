@@ -4,11 +4,12 @@
 ![example](https://user-images.githubusercontent.com/89206401/229771216-199727ef-2a01-4ab3-bac6-7e0a5234389e.gif)
 
 ## Features
-- Display over any widget
+- Display over any CTk widget
 - Configurable options
 - Transparency effect
 - Round corners
-- Can show current value of a CTk Slider
+- Can be used with CTkSlider to show the value
+- Dynamic offset
 - Add delays
 
 ## Installation
