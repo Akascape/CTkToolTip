@@ -69,7 +69,7 @@ root.mainloop()
 | **text_color** | change the text color of tooltip |
 | wraplength | constrains the width of the tooltip, causing CTkToolTip, where required, to wrap the message at word boundaries. |
 | font | label text font, tuple: (font_name, size) |
-| justify | change the text display structure (left, right or center |
+| justify | change the text display structure (left, right or center) |
 | _*Other Label Parameters_ | _All other parameters for ctk label can be passed in ctktooltip_ |
 
 ## Methods
