@@ -8,6 +8,8 @@ import sys
 import customtkinter
 from tkinter import Toplevel, Frame
 
+from typing import Optional, Union, Tuple
+
 
 class CTkToolTip(Toplevel):
     """
@@ -22,10 +24,10 @@ class CTkToolTip(Toplevel):
             follow: bool = True,
             x_offset: int = +20,
             y_offset: int = +10,
-            bg_color: str = None,
+            bg_color: Optional[Union[str, Tuple[str, str]]] = None,
             corner_radius: int = 10,
             border_width: int = 0,
-            border_color: str = None,
+            border_color: Optional[Union[str, Tuple[str, str]]] = None,
             alpha: float = 0.95,
             padding: tuple = (10, 2),
             **message_kwargs):
