@@ -1,6 +1,7 @@
 """
 CustomTkinter ToolTip
 Author: Akash Bora
+Contributors: limafresh
 This is a tooltip/pop-up widget made with customtkinter.
 Homepage: https://github.com/Akascape/CTkToolTip
 """

@@ -1,6 +1,6 @@
 """
 CTkToolTip Widget
-version: 0.8
+version: 0.8.1
 """
 
 import time
@@ -71,7 +71,7 @@ class CTkToolTip(Toplevel):
         self.alpha = alpha
         self.border_width = border_width
         self.padding = padding
-        self.bg_color = customtkinter.ThemeManager.theme["CTkFrame"]["fg_color"] if bg_color is None else bg_color
+        self.bg_color = bg_color
         self.border_color = border_color
         self.disable = False
 
@@ -99,14 +99,6 @@ class CTkToolTip(Toplevel):
         self.message_label = customtkinter.CTkLabel(self.frame, textvariable=self.messageVar, **message_kwargs)
         self.message_label.pack(fill="both", padx=self.padding[0] + self.border_width,
                                 pady=self.padding[1] + self.border_width, expand=True)
-
-        if self.widget.winfo_name() != "tk":
-            if self.frame.cget("fg_color") == self.widget.cget("bg_color"):
-                if not bg_color:
-                    self._top_fg_color = self.frame._apply_appearance_mode(
-                        customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
-                    if self._top_fg_color != self.transparent_color:
-                        self.frame.configure(fg_color=self._top_fg_color)
 
         # Add bindings to the widget without overriding the existing ones
         self.widget.bind("<Enter>", self.on_enter, add="+")
@@ -154,6 +146,14 @@ class CTkToolTip(Toplevel):
 
         # Offsets the ToolTip using the coordinates od an event as an origin
         self.geometry(f"+{event.x_root + offset_x}+{event.y_root + self.y_offset}")
+
+        # So that the color does not blend with the frame
+        if self.widget.winfo_name() != "tk":
+            if not self.bg_color:
+                self._top_fg_color = self.frame._apply_appearance_mode(
+                    customtkinter.ThemeManager.theme["CTkFrame"]["top_fg_color"])
+                if self._top_fg_color != self.transparent_color:
+                    self.frame.configure(fg_color=self._top_fg_color)
 
         # Time is in integer: milliseconds
         self.after(int(self.delay * 1000), self._show)
