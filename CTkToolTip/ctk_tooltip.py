@@ -253,6 +253,12 @@ class CTkToolTip(Toplevel):
         self.messageVar.set(message)
         self.message_label.configure(**kwargs)
 
+    def block_update_dimensions_event(self) -> True:
+        return True
+
+    def unblock_update_dimensions_event(self) -> True:
+        return True
+
     def destroy(self) -> None:
         """
         Destroy the tooltip and clean up bindings.
