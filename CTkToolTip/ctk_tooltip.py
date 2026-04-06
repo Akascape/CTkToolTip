@@ -63,6 +63,11 @@ class CTkToolTip(Toplevel):
 
         self.resizable(width=True, height=True)
 
+        # customtkinter's scaling callback checks this flag on toplevel windows.
+        # Keep it defined on plain tkinter.Toplevel-based tooltips to avoid
+        # AttributeError when DPI/scaling events fire (e.g. moving across monitors).
+        self.block_update_dimensions_event = False
+
         # Make the background transparent
         # Ensure background color is a string, not a tuple
         bg_for_config = self.transparent_color[0] if isinstance(self.transparent_color, (tuple, list)) else self.transparent_color
